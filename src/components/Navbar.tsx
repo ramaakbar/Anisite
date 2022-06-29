@@ -1,14 +1,18 @@
 import Link from 'next/link';
-import { ChevronDownIcon, MenuIcon } from '@heroicons/react/solid';
-import { BookOpenIcon } from '@heroicons/react/outline';
-import { Popover, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
+import { ChevronDownIcon, MenuIcon, XIcon } from '@heroicons/react/solid';
+import { Dialog, Popover, Transition } from '@headlessui/react';
+import { Fragment, useState } from 'react';
+import { useRouter } from 'next/router';
+import Drawer from './Drawer';
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className='bg-white p-4'>
-      <nav className='flex mx-auto container justify-between items-center'>
-        <Link href=''>
+      <Drawer open={open} setOpen={setOpen} />
+      <nav className='flex mx-auto max-w-6xl justify-between items-center'>
+        <Link href='/'>
           <a className='font-bold text-2xl tracking-wide uppercase select-none'>
             Anilist
           </a>
@@ -32,11 +36,11 @@ export default function Navbar() {
                 >
                   <Popover.Panel
                     className={
-                      'absolute right-0 mt-8 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none p-2 z-10'
+                      'absolute right-0 mt-8 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white  ring-1 ring-black ring-opacity-5 focus:outline-none p-2 z-10'
                     }
                   >
                     <div className='flex flex-col'>
-                      <Link href='#'>
+                      <Link href='/browse/anime'>
                         <a className='p-2 hover:bg-gray-100 rounded-md'>
                           Anime
                         </a>
@@ -64,7 +68,11 @@ export default function Navbar() {
           </Link>
         </div>
         <div className='md:hidden p-2 hover:bg-gray-100 text-gray-400 hover:text-gray-500 rounded-md transition duration-200 ease-in'>
-          <MenuIcon className='h-6 w-6 ' aria-hidden='true' />
+          <MenuIcon
+            className='h-6 w-6 '
+            aria-hidden='true'
+            onClick={() => setOpen(true)}
+          />
         </div>
       </nav>
     </div>

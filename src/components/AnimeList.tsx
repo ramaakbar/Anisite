@@ -1,5 +1,4 @@
 import { Anime } from '@/types';
-import Image from 'next/image';
 import AnimeCard from './AnimeCard';
 
 export default function AnimeList({ animes }: { animes: Anime[] }) {
