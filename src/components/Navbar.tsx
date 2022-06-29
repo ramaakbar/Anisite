@@ -4,12 +4,49 @@ import { Popover, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import Drawer from './Drawer';
 
+export type NavItems = {
+  name: string;
+  href?: any;
+  items?: {
+    name: string;
+    href?: any;
+  }[];
+};
+
+const navItems: NavItems[] = [
+  {
+    name: 'Browse',
+    items: [
+      {
+        name: 'Anime',
+        href: '/browse/anime',
+      },
+      {
+        name: 'Manga',
+        href: '/browse/manga',
+      },
+    ],
+  },
+  {
+    name: 'About',
+    href: '/about',
+  },
+  {
+    name: 'Login',
+    href: '/login',
+  },
+  {
+    name: 'Register',
+    href: '/register',
+  },
+];
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
     <div className='bg-white p-4'>
-      <Drawer open={open} setOpen={setOpen} />
+      <Drawer navItems={navItems} open={open} setOpen={setOpen} />
       <nav className='flex mx-auto max-w-6xl justify-between items-center'>
         <Link href='/'>
           <a className='font-bold text-2xl tracking-wide uppercase select-none'>

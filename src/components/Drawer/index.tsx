@@ -2,11 +2,15 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
 import { Fragment } from 'react';
+import { NavItems } from '../Navbar';
+import DrawerItems from './DrawerItems';
 
 export default function Drawer({
+  navItems,
   open,
   setOpen,
 }: {
+  navItems: NavItems[];
   open: boolean;
   setOpen: (open: boolean) => void;
 }) {
@@ -37,8 +41,8 @@ export default function Drawer({
             leaveTo='-translate-x-full'
           >
             <Dialog.Panel className='relative max-w-xs w-full bg-white shadow-xl pb-12 flex flex-col'>
-              <div className='px-4 pt-5 pb-2 flex flex-col w-full'>
-                <div className='flex items-center justify-between'>
+              <div className='pt-5 pb-2 flex flex-col w-full '>
+                <div className='flex items-center justify-between mb-5 px-4 '>
                   <h1
                     className='font-bold text-2xl tracking-wide uppercase select-none cursor-pointer'
                     onClick={() => {
@@ -56,23 +60,7 @@ export default function Drawer({
                     <XIcon className='h-6 w-6' />
                   </button>
                 </div>
-                <div>
-                  <h3>Browse</h3>
-                  <ul>
-                    <li
-                      onClick={() => {
-                        setOpen(false);
-                        router.push(`/browse/anime`);
-                      }}
-                    >
-                      Anime
-                    </li>
-                    <li>Manga</li>
-                  </ul>
-                </div>
-                <div>About</div>
-                <div>Login</div>
-                <div>Sign Up</div>
+                <DrawerItems navItems={navItems} setOpen={setOpen} />
               </div>
             </Dialog.Panel>
           </Transition.Child>
