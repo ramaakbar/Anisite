@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 
 export default function Drawer({
   open,

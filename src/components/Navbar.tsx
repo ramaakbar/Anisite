@@ -1,8 +1,7 @@
 import Link from 'next/link';
-import { ChevronDownIcon, MenuIcon, XIcon } from '@heroicons/react/solid';
-import { Dialog, Popover, Transition } from '@headlessui/react';
+import { ChevronDownIcon, MenuIcon } from '@heroicons/react/solid';
+import { Popover, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
-import { useRouter } from 'next/router';
 import Drawer from './Drawer';
 
 export default function Navbar() {
