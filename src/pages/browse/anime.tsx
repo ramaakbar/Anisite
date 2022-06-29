@@ -40,7 +40,7 @@ export default function BrowserAnimes({ topAnimes }: { topAnimes: Anime[] }) {
     <div className='min-h-screen'>
       <Navbar />
       <div className='p-4 mb-5'>
-        <div className='container mx-auto space-y-5'>
+        <div className='max-w-6xl mx-auto space-y-5'>
           <h2 className='text-3xl'>All anime list</h2>
           <AnimeList animes={topAnimes} />
         </div>
