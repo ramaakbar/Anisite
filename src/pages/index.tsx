@@ -1,19 +1,24 @@
-import AnimeList from '@/components/AnimeList';
+import AnimeList from '@/components/ItemList';
 import Navbar from '@/components/Navbar';
-import { Anime, AnimeRes } from '@/types';
+import { Anime, AnimeRes } from '@/models/Anime';
+
 import type { GetStaticProps, NextPage } from 'next';
 
 const getOnAirAnimes = (): Promise<AnimeRes> =>
-  fetch('https://api.jikan.moe/v4/seasons/now').then((res) => res.json());
+  fetch('https://api.jikan.moe/v4/seasons/now?limit=5').then((res) =>
+    res.json()
+  );
 
 const upcomingAnimes = (): Promise<AnimeRes> =>
-  fetch('https://api.jikan.moe/v4/seasons/upcoming').then((res) => res.json());
+  fetch('https://api.jikan.moe/v4/seasons/upcoming?limit=5').then((res) =>
+    res.json()
+  );
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
-      onAirAnimes: (await getOnAirAnimes()).data.slice(0, 5),
-      upcomingAnimes: (await upcomingAnimes()).data.slice(0, 5),
+      onAirAnimes: (await getOnAirAnimes()).data,
+      upcomingAnimes: (await upcomingAnimes()).data,
     },
     revalidate: 4000,
   };
@@ -34,7 +39,7 @@ const Home: NextPage<{ onAirAnimes: Anime[]; upcomingAnimes: Anime[] }> = ({
         }}
       ></div>
 
-      <div className='p-4 mb-5'>
+      <div className='p-4 mb-5 bg-white'>
         <div className='max-w-6xl mx-auto space-y-5'>
           <h2 className='text-3xl'>Airing Animes</h2>
           <AnimeList animes={onAirAnimes} />

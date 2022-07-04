@@ -1,7 +1,8 @@
-import { Anime } from '@/types';
-import AnimeCard from './AnimeCard';
+import { Anime } from '@/models/Anime';
+import { Manga } from '@/models/Manga';
+import AnimeCard from './ItemCard';
 
-export default function AnimeList({ animes }: { animes: Anime[] }) {
+export default function ItemList({ animes }: { animes: Anime[] | Manga[] }) {
   return (
     <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
       {animes.map((anime) => (

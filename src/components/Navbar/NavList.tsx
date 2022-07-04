@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { NavItems } from '.';
-import NavPopup from './Navpopup';
+import NavPopup from './NavPopup';
 
 export default function NavList({ navItems }: { navItems: NavItems[] }) {
   return (

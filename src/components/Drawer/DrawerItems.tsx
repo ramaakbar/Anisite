@@ -32,7 +32,7 @@ export default function DrawerItems({
           </div>
         ) : (
           <p
-            className='text-lg font-medium block text-gray-800 p-2 hover:bg-gray-100 rounded-md transition duration-200 ease-in'
+            className='text-lg font-medium block text-gray-800 p-2 hover:bg-gray-100 rounded-md transition duration-200 ease-in cursor-pointer'
             onClick={() => {
               setOpen(false);
               router.push(nav.href);
