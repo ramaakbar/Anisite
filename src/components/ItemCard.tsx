@@ -2,7 +2,6 @@ import { Anime } from '@/models/Anime';
 import { Manga } from '@/models/Manga';
 import Image from 'next/image';
 import Link from 'next/link';
-import Navbar from './Navbar';
 
 export default function ItemCard({ anime }: { anime: Anime | Manga }) {
   return (

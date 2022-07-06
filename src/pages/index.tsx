@@ -17,17 +17,19 @@ const upcomingAnimes = (): Promise<AnimeRes> =>
 export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
-      onAirAnimes: (await getOnAirAnimes()).data,
-      upcomingAnimes: (await upcomingAnimes()).data,
+      onAirAnimes: await getOnAirAnimes(),
+      upcomingAnimes: await upcomingAnimes(),
     },
     revalidate: 4000,
   };
 };
 
-const Home: NextPage<{ onAirAnimes: Anime[]; upcomingAnimes: Anime[] }> = ({
+const Home: NextPage<{ onAirAnimes: AnimeRes; upcomingAnimes: AnimeRes }> = ({
   onAirAnimes,
   upcomingAnimes,
 }) => {
+  const { data: onAir } = onAirAnimes;
+  const { data: upComing } = upcomingAnimes;
   return (
     <div className='min-h-screen'>
       <Navbar />
@@ -42,9 +44,10 @@ const Home: NextPage<{ onAirAnimes: Anime[]; upcomingAnimes: Anime[] }> = ({
       <div className='p-4 mb-5 bg-white'>
         <div className='max-w-6xl mx-auto space-y-5'>
           <h2 className='text-3xl'>Airing Animes</h2>
-          <AnimeList animes={onAirAnimes} />
+          {onAirAnimes ? <AnimeList animes={onAir} /> : <>No anime</>}
+
           <h2 className='text-3xl'>Upcoming Animes</h2>
-          <AnimeList animes={upcomingAnimes} />
+          {upcomingAnimes ? <AnimeList animes={upComing} /> : <>No anime</>}
         </div>
       </div>
     </div>

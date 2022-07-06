@@ -14,11 +14,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const res = await fetch(`https://api.jikan.moe/v4/anime/${mal_id}/full`);
   const data = await res.json();
-  if (!data.data?.mal_id) {
-    return {
-      notFound: true,
-    };
-  }
+  // if (!data.data?.mal_id) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
   return {
     props: {
       anime: data.data,
@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await fetch('https://api.jikan.moe/v4/anime?limit=5').then(
+  const data = await fetch('https://api.jikan.moe/v4/anime?limit=3').then(
     (res) => res.json()
   );
   const paths = data.data.map((anime: Anime) => {
