@@ -2,7 +2,7 @@ import AnimeList from '@/components/ItemList';
 import Navbar from '@/components/Navbar';
 import { AnimeRes } from '@/models/Anime';
 import { GetStaticProps } from 'next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import Pagination from '@/components/Pagination';
 import { useAnimesData } from '@/hooks/useAnimesData';
@@ -20,6 +20,10 @@ export const getStaticProps: GetStaticProps = async () => {
 export default function BrowseAnimes({ topAnimes }: { topAnimes: AnimeRes }) {
   const [page, setPage] = useState(1);
   const { data, status, error, isFetching } = useAnimesData(page);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
 
   return (
     <div className='min-h-screen'>
