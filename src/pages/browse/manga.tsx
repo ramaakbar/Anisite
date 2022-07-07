@@ -14,7 +14,7 @@ export default function BrowseManga() {
   }, [page]);
 
   return (
-    <div className='min-h-screen'>
+    <div className='min-h-screen mt-20'>
       <Navbar />
       <div className='p-4 mb-5'>
         <div className='max-w-6xl mx-auto space-y-5'>

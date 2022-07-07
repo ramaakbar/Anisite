@@ -7,7 +7,7 @@ export const getTopMangas = (page: number): Promise<MangaRes> =>
   );
 
 export const useMangasData = (page: number) => {
-  return useQuery<MangaRes, Error>(['animes', page], () => getTopMangas(page), {
+  return useQuery<MangaRes, Error>(['mangas', page], () => getTopMangas(page), {
     staleTime: 30000,
     keepPreviousData: true,
     refetchOnMount: false,

@@ -46,9 +46,9 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className='bg-white p-4'>
+    <div className='bg-white p-4 fixed z-10 w-full top-0'>
       <Drawer navItems={navItems} open={open} setOpen={setOpen} />
-      <nav className='flex mx-auto max-w-6xl justify-between items-center'>
+      <nav className='flex mx-auto max-w-6xl justify-between items-center '>
         <Link href='/'>
           <a className='font-bold text-2xl tracking-wide uppercase select-none'>
             Anilist

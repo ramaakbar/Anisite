@@ -1,10 +1,8 @@
 import AnimeList from '@/components/ItemList';
 import Navbar from '@/components/Navbar';
-import { AnimeRes } from '@/models/Anime';
-import { GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
 import Pagination from '@/components/Pagination';
-import { getTopAnimes, useAnimesData } from '@/hooks/useAnimesData';
+import { useAnimesData } from '@/hooks/useAnimesData';
 import LoadingCard from '@/components/LoadingCard';
 
 // export const getStaticProps: GetStaticProps = async () => {
@@ -25,7 +23,7 @@ export default function BrowseAnimes() {
   }, [page]);
 
   return (
-    <div className='min-h-screen'>
+    <div className='min-h-screen mt-20'>
       <Navbar />
       <div className='p-4 mb-5'>
         <div className='max-w-6xl mx-auto space-y-5'>

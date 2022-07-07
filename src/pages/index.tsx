@@ -5,7 +5,7 @@ import { AnimeRes } from '@/models/Anime';
 import type { GetStaticProps, NextPage } from 'next';
 
 const getOnAirAnimes = (): Promise<AnimeRes> =>
-  fetch('https://api.jikan.moe/v4/seasons/now?limit=5').then((res) =>
+  fetch('https://api.jikan.moe/v4/top/anime?filter=airing').then((res) =>
     res.json()
   );
 
@@ -43,7 +43,7 @@ const Home: NextPage<{ onAirAnimes: AnimeRes; upcomingAnimes: AnimeRes }> = ({
 
       <div className='p-4 mb-5 bg-white'>
         <div className='max-w-6xl mx-auto space-y-5'>
-          <h2 className='text-3xl'>Airing Animes</h2>
+          <h2 className='text-3xl'>Top Airing Animes</h2>
           {onAirAnimes ? <AnimeList animes={onAir} /> : <>No anime</>}
 
           <h2 className='text-3xl'>Upcoming Animes</h2>
