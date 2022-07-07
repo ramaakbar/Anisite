@@ -3,21 +3,20 @@ import Navbar from '@/components/Navbar';
 import { AnimeRes } from '@/models/Anime';
 import { GetStaticProps } from 'next';
 import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
 import Pagination from '@/components/Pagination';
-import { useAnimesData } from '@/hooks/useAnimesData';
-import { getTopAnimes } from '@/services';
+import { getTopAnimes, useAnimesData } from '@/hooks/useAnimesData';
+import LoadingCard from '@/components/LoadingCard';
 
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {
-      topAnimes: await getTopAnimes(1),
-    },
-    revalidate: 4000,
-  };
-};
+// export const getStaticProps: GetStaticProps = async () => {
+//   return {
+//     props: {
+//       topAnimes: await getTopAnimes(1),
+//     },
+//     revalidate: 4000,
+//   };
+// };
 
-export default function BrowseAnimes({ topAnimes }: { topAnimes: AnimeRes }) {
+export default function BrowseAnimes() {
   const [page, setPage] = useState(1);
   const { data, status, error, isFetching } = useAnimesData(page);
 
@@ -32,11 +31,9 @@ export default function BrowseAnimes({ topAnimes }: { topAnimes: AnimeRes }) {
         <div className='max-w-6xl mx-auto space-y-5'>
           <h2 className='text-3xl'>All anime list</h2>
           {status === 'loading' || isFetching ? (
-            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
+            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8'>
               {[...Array(25)].map((e, i) => (
-                <div className='w-full h-full space-y-2 animate-pulse' key={i}>
-                  <div className='relative aspect-[2/3] rounded-md overflow-hidden bg-slate-300'></div>
-                </div>
+                <LoadingCard key={i} />
               ))}
             </div>
           ) : status === 'error' ? (

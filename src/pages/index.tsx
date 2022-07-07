@@ -1,6 +1,6 @@
 import AnimeList from '@/components/ItemList';
 import Navbar from '@/components/Navbar';
-import { Anime, AnimeRes } from '@/models/Anime';
+import { AnimeRes } from '@/models/Anime';
 
 import type { GetStaticProps, NextPage } from 'next';
 

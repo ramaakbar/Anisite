@@ -1,11 +1,12 @@
 import { AnimeRes } from '@/models/Anime';
+import { MangaRes } from '@/models/Manga';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
 import { Dispatch, SetStateAction } from 'react';
 
 type PaginationProps = {
   page: number;
   setPage: Dispatch<SetStateAction<number>>;
-  data?: AnimeRes;
+  data?: AnimeRes | MangaRes;
 };
 
 export default function Pagination({ page, setPage, data }: PaginationProps) {
@@ -24,7 +25,7 @@ export default function Pagination({ page, setPage, data }: PaginationProps) {
           <button
             onClick={() => setPage((prev) => prev - 1)}
             disabled={page === 1}
-            className={`rounded-md border p-2 flex items-center ${
+            className={`rounded-md border p-2 flex items-center hover:bg-gray-100 transition duration-300 ease-in-out  ${
               page === 1 ? 'cursor-not-allowed' : 'cursor-pointer'
             }`}
           >
@@ -33,7 +34,7 @@ export default function Pagination({ page, setPage, data }: PaginationProps) {
           <button
             onClick={() => setPage((prev) => prev + 1)}
             disabled={data?.pagination?.has_next_page === false}
-            className={`rounded-md border p-2 flex items-center ${
+            className={`rounded-md border p-2 flex items-center hover:bg-gray-100 transition duration-300 ease-in-out ${
               data?.pagination?.has_next_page === false
                 ? 'cursor-not-allowed'
                 : 'cursor-pointer'
@@ -47,7 +48,7 @@ export default function Pagination({ page, setPage, data }: PaginationProps) {
         <button
           onClick={() => setPage((prev) => prev - 1)}
           disabled={page === 1}
-          className={`rounded-md border p-2 flex items-center ${
+          className={`rounded-md border p-2 flex items-center hover:bg-gray-100 transition duration-300 ease-in-out ${
             page === 1 ? 'cursor-not-allowed' : 'cursor-pointer'
           }`}
         >
@@ -56,7 +57,7 @@ export default function Pagination({ page, setPage, data }: PaginationProps) {
         <button
           onClick={() => setPage((prev) => prev + 1)}
           disabled={data?.pagination?.has_next_page === false}
-          className={`rounded-md border p-2 flex items-center ${
+          className={`rounded-md border p-2 flex items-center hover:bg-gray-100 transition duration-300 ease-in-out ${
             page === 1 ? 'cursor-not-allowed' : 'cursor-pointer'
           }`}
         >
