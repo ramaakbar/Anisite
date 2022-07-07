@@ -1,4 +1,4 @@
-import MangaList from '@/components/ItemList';
+import ItemList from '@/components/Item/ItemList';
 import LoadingCard from '@/components/LoadingCard';
 import Navbar from '@/components/Navbar';
 import Pagination from '@/components/Pagination';
@@ -28,7 +28,7 @@ export default function BrowseManga() {
           ) : status === 'error' ? (
             <div>{error.message}</div>
           ) : (
-            <MangaList animes={data!.data} />
+            <ItemList animes={data!.data} />
           )}
           <Pagination page={page} setPage={setPage} data={data} />
         </div>

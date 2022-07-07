@@ -58,7 +58,9 @@ export default function Pagination({ page, setPage, data }: PaginationProps) {
           onClick={() => setPage((prev) => prev + 1)}
           disabled={data?.pagination?.has_next_page === false}
           className={`rounded-md border p-2 flex items-center hover:bg-gray-100 transition duration-300 ease-in-out ${
-            page === 1 ? 'cursor-not-allowed' : 'cursor-pointer'
+            data?.pagination?.has_next_page === false
+              ? 'cursor-not-allowed'
+              : 'cursor-pointer'
           }`}
         >
           Next <ChevronRightIcon className='w-5 h-5' />

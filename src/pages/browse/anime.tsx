@@ -1,4 +1,4 @@
-import AnimeList from '@/components/ItemList';
+import ItemList from '@/components/Item/ItemList';
 import Navbar from '@/components/Navbar';
 import { useEffect, useState } from 'react';
 import Pagination from '@/components/Pagination';
@@ -37,7 +37,7 @@ export default function BrowseAnimes() {
           ) : status === 'error' ? (
             <div>{error.message}</div>
           ) : (
-            <AnimeList animes={data!.data} />
+            <ItemList animes={data!.data} />
           )}
           <Pagination page={page} setPage={setPage} data={data} />
         </div>

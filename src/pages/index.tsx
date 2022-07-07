@@ -1,17 +1,17 @@
-import AnimeList from '@/components/ItemList';
+import ItemCard from '@/components/Item/ItemCard';
 import Navbar from '@/components/Navbar';
 import { AnimeRes } from '@/models/Anime';
 
 import type { GetStaticProps, NextPage } from 'next';
 
 const getOnAirAnimes = (): Promise<AnimeRes> =>
-  fetch('https://api.jikan.moe/v4/top/anime?filter=airing&limit=10').then(
-    (res) => res.json()
+  fetch('https://api.jikan.moe/v4/top/anime?filter=airing').then((res) =>
+    res.json()
   );
 
 const upcomingAnimes = (): Promise<AnimeRes> =>
-  fetch('https://api.jikan.moe/v4/top/anime?filter=upcoming&limit=10').then(
-    (res) => res.json()
+  fetch('https://api.jikan.moe/v4/top/anime?filter=upcoming').then((res) =>
+    res.json()
   );
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -44,10 +44,36 @@ const Home: NextPage<{ onAirAnimes: AnimeRes; upcomingAnimes: AnimeRes }> = ({
       <div className='p-4 mb-5 bg-white'>
         <div className='max-w-6xl mx-auto space-y-5'>
           <h2 className='text-3xl'>Top Airing Animes</h2>
-          {onAirAnimes ? <AnimeList animes={onAir} /> : <>No anime</>}
+          {onAirAnimes ? (
+            <div className='flex overflow-x-scroll space-x-5'>
+              {onAirAnimes?.data.map((anime) => (
+                <div
+                  key={anime.mal_id}
+                  className='flex-shrink-0 w-1/3 sm:w-1/4 md:w-1/5 pb-4'
+                >
+                  <ItemCard anime={anime} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <>No anime</>
+          )}
 
           <h2 className='text-3xl'>Upcoming Animes</h2>
-          {upcomingAnimes ? <AnimeList animes={upComing} /> : <>No anime</>}
+          {upcomingAnimes ? (
+            <div className='flex overflow-x-scroll space-x-5'>
+              {upcomingAnimes?.data.map((anime) => (
+                <div
+                  key={anime.mal_id}
+                  className='flex-shrink-0 w-1/3 sm:w-1/4 md:w-1/5 pb-4'
+                >
+                  <ItemCard anime={anime} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <>No anime</>
+          )}
         </div>
       </div>
     </div>
