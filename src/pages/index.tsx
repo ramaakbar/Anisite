@@ -5,13 +5,13 @@ import { AnimeRes } from '@/models/Anime';
 import type { GetStaticProps, NextPage } from 'next';
 
 const getOnAirAnimes = (): Promise<AnimeRes> =>
-  fetch('https://api.jikan.moe/v4/top/anime?filter=airing').then((res) =>
-    res.json()
+  fetch('https://api.jikan.moe/v4/top/anime?filter=airing&limit=10').then(
+    (res) => res.json()
   );
 
 const upcomingAnimes = (): Promise<AnimeRes> =>
-  fetch('https://api.jikan.moe/v4/seasons/upcoming?limit=5').then((res) =>
-    res.json()
+  fetch('https://api.jikan.moe/v4/top/anime?filter=upcoming&limit=10').then(
+    (res) => res.json()
   );
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -31,7 +31,7 @@ const Home: NextPage<{ onAirAnimes: AnimeRes; upcomingAnimes: AnimeRes }> = ({
   const { data: onAir } = onAirAnimes;
   const { data: upComing } = upcomingAnimes;
   return (
-    <div className='min-h-screen'>
+    <div className='min-h-screen mt-10'>
       <Navbar />
 
       <div
